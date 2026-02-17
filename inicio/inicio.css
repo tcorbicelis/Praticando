@@ -143,9 +143,9 @@
     max-width: 800px;
     height: 70vh;
     border: 2px solid #00ff66;
-    box-shadow: 0 0 20px #00ff66;
+    box-shadow: 0 0 20px #ffffff;
     overflow-y: auto;
-    color: #00ff66;
+    color: #ffffff;
     font-family: "Courier New", monospace;
     transform: translateY(-50px);
     transition: transform 0.4s ease, box-shadow 0.6s ease;
