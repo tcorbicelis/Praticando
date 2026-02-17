@@ -104,6 +104,9 @@
     border: 1px solid #00ff66;
     padding: 8px 15px;
     cursor: pointer;
+
+    /* MOVE O BOTÃO PARA A DIREITA */
+    margin-left: 16px; /* aumenta esse valor para ir mais à direita */
 }
 
 .terminal-btn:hover {
