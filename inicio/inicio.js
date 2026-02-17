@@ -1,3 +1,5 @@
+let modoJogoAtivo = false;
+
 // ========================================
 // VERIFICAR IDADE
 // ========================================
@@ -251,21 +253,49 @@ function executarComando(cmd) {
 
             case "hackear":
                 if (args[1] === "sistema") {
-                    hackearSistema();
+                hackearSistema();
                 } else {
-                    adicionarLinha("Uso: hackear sistema");
+                adicionarLinha("Uso: hackear sistema");
                 }
                 break;
 
-            default:
-                adicionarLinha("Comando não reconhecido");
+
+        // 👇 COLOQUE AQUI 👇
+        case "escolha":
+
+            if (!modoJogoAtivo) {
+                adicionarLinha("Nenhuma decisão pendente.");
+                break;
+            }
+
+            const opcao = args[1];
+
+            if (opcao === "1") {
+                finalDesconectar();
+            } 
+            else if (opcao === "2") {
+                finalMascarar();
+            } 
+            else if (opcao === "3") {
+                finalContinuar();
+            } 
+            else {
+                adicionarLinha("Escolha inválida. Use 1, 2 ou 3.");
+            }
+
+            modoJogoAtivo = false;
+            break;
+
+
+        default:
+            adicionarLinha("Comando não reconhecido");
         }
 
     }, 800);
 }
 
 // ========================================
-// HACK FAKE 😈
+// HACK FAKE
 // ========================================
 
 function hackearSistema() {
@@ -362,7 +392,7 @@ function simularArquivosSecretos() {
             }, 3000);
 
             setTimeout(() => {
-                adicionarLinha("Arquivos extraídos com sucesso 😈");
+                adicionarLinha("Arquivos extraídos com sucesso");
                 iniciarRastreamento();
             }, 3800);
         }
@@ -371,6 +401,25 @@ function simularArquivosSecretos() {
 }
 
 function iniciarRastreamento() {
+
+    adicionarLinha("⚠ ATIVIDADE SUSPEITA DETECTADA ⚠");
+
+    const ipFake = gerarIPFake();
+    adicionarLinha("Rastreando IP: " + ipFake);
+
+    setTimeout(() => {
+        adicionarLinha("");
+        adicionarLinha("Escolha uma ação:");
+        adicionarLinha("1 - Desconectar");
+        adicionarLinha("2 - Mascarar IP");
+        adicionarLinha("3 - Continuar ataque");
+        adicionarLinha("Digite: escolha [1-3]");
+    }, 1500);
+}
+
+function iniciarRastreamento() {
+
+    modoJogoAtivo = true;
 
     adicionarLinha("⚠ ATIVIDADE SUSPEITA DETECTADA ⚠");
 
@@ -393,12 +442,17 @@ function iniciarRastreamento() {
             setTimeout(() => {
                 adicionarLinha("IP localizado!");
                 adicionarLinha("País: Brasil");
-                adicionarLinha("Cidade: São Paulo");
-                adicionarLinha("Provedor: Rede Segura Telecom");
+                adicionarLinha("Cidade: Macaé");
+                adicionarLinha("Provedor: Rede Segura");
             }, 800);
 
             setTimeout(() => {
-                contagemRegressiva();
+                adicionarLinha("");
+                adicionarLinha("Escolha uma ação:");
+                adicionarLinha("1 - Desconectar");
+                adicionarLinha("2 - Mascarar IP");
+                adicionarLinha("3 - Continuar ataque");
+                adicionarLinha("Digite: escolha [1-3]");
             }, 2000);
         }
 
@@ -417,7 +471,7 @@ function contagemRegressiva() {
 
     let tempo = 5;
 
-    adicionarLinha("🚨 CONTRA-ATAQUE INICIADO 🚨");
+    adicionarLinha("CONTRA-ATAQUE INICIADO");
 
     const countdown = setInterval(() => {
 
@@ -429,7 +483,7 @@ function contagemRegressiva() {
             clearInterval(countdown);
 
             adicionarLinha("CONEXÃO INTERROMPIDA.");
-            adicionarLinha("Você escapou por pouco... 😈");
+            adicionarLinha("Você escapou por pouco...");
 
             efeitoTelaHackPesado();
         }
@@ -458,6 +512,53 @@ function efeitoTelaHackPesado() {
         }
 
     }, 80);
+}
+
+function finalDesconectar() {
+
+    adicionarLinha("Desconectando...");
+    
+    setTimeout(() => {
+        adicionarLinha("Conexão encerrada com sucesso.");
+        adicionarLinha("Você escapou sem deixar rastros");
+        efeitoTelaHack();
+    }, 1500);
+}
+
+function finalMascarar() {
+
+    adicionarLinha("Ativando VPN clandestina...");
+
+    setTimeout(() => {
+        adicionarLinha("IP mascarado com sucesso.");
+        adicionarLinha("Novo IP: " + gerarIPFake());
+    }, 1500);
+
+    setTimeout(() => {
+        adicionarLinha("Rastreamento perdido.");
+        adicionarLinha("Você se tornou invisível");
+        efeitoTelaHack();
+    }, 2500);
+}
+
+function finalContinuar() {
+
+    adicionarLinha("Ignorando rastreamento...");
+    adicionarLinha("Continuando invasão...");
+
+    setTimeout(() => {
+        adicionarLinha("SISTEMA DE DEFESA ATIVADO");
+    }, 1500);
+
+    setTimeout(() => {
+        adicionarLinha("Você foi identificado!");
+    }, 2500);
+
+    setTimeout(() => {
+        adicionarLinha("ACESSO BLOQUEADO.");
+        adicionarLinha("Fim de jogo");
+        efeitoTelaHackPesado();
+    }, 3500);
 }
 
 function mostrarErro() {
