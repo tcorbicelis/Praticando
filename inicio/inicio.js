@@ -137,17 +137,17 @@ function executarComando(cmd) {
                 break;
 
             case "sobre":
-                adicionarLinha("💚 Dev focado em lógica e front-end.");
+                adicionarLinha("Dev focado em lógica e front-end.");
                 break;
 
             case "soma":
                 if(args.length < 3) {
-                    adicionarLinha("⚠️ Uso: soma [a] [b]");
+                    adicionarLinha("Uso: soma [a] [b]");
                 } else {
                     const a = Number(args[1]);
                     const b = Number(args[2]);
                     if(isNaN(a) || isNaN(b)) {
-                        adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                        adicionarLinha("Ambos os valores precisam ser números");
                     } else {
                         adicionarLinha(`Resultado: ${a} + ${b} = ${a + b}`);
                     }
@@ -156,12 +156,12 @@ function executarComando(cmd) {
 
             case "multiplicar":
                 if(args.length < 3) {
-                    adicionarLinha("⚠️ Uso: multiplicar [a] [b]");
+                    adicionarLinha("Uso: multiplicar [a] [b]");
                 } else {
                     const a = Number(args[1]);
                     const b = Number(args[2]);
                     if(isNaN(a) || isNaN(b)) {
-                        adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                        adicionarLinha("Ambos os valores precisam ser números");
                     } else {
                         adicionarLinha(`Resultado: ${a} * ${b} = ${a * b}`);
                     }
@@ -170,11 +170,11 @@ function executarComando(cmd) {
 
             case "parouimpar":
                 if(args.length < 2) {
-                    adicionarLinha("⚠️ Uso: parouimpar [n]");
+                    adicionarLinha("Uso: parouimpar [n]");
                 } else {
                     const n = Number(args[1]);
                     if(isNaN(n)) {
-                        adicionarLinha("⚠️ Informe um número válido");
+                        adicionarLinha("Informe um número válido");
                     } else {
                         const resultado = (n % 2 === 0) ? "Par" : "Ímpar";
                         adicionarLinha(`O número ${n} é ${resultado}`);
@@ -184,11 +184,11 @@ function executarComando(cmd) {
 
             case "fatorial":
                 if(args.length < 2) {
-                    adicionarLinha("⚠️ Uso: fatorial [n]");
+                    adicionarLinha("Uso: fatorial [n]");
                 } else {
                     const n = Number(args[1]);
                     if(isNaN(n) || n < 0) {
-                        adicionarLinha("⚠️ Informe um número inteiro não negativo");
+                        adicionarLinha("Informe um número inteiro não negativo");
                     } else {
                         let f = 1;
                         for(let i=1; i<=n; i++) f *= i;
@@ -220,47 +220,47 @@ function executarComando(cmd) {
 
             case "data":
                 const agora = new Date();
-                adicionarLinha(`📅 Data: ${agora.toLocaleDateString()} 🕒 Hora: ${agora.toLocaleTimeString()}`);
+                adicionarLinha(`Data: ${agora.toLocaleDateString()} Hora: ${agora.toLocaleTimeString()}`);
                 break;
 
             case "aleatorio":
                 if(args.length < 3) {
-                    adicionarLinha("⚠️ Uso: aleatorio [min] [max]");
+                    adicionarLinha("Uso: aleatorio [min] [max]");
                 } else {
                     const min = Number(args[1]);
                     const max = Number(args[2]);
                     if(isNaN(min) || isNaN(max)) {
-                        adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                        adicionarLinha("Ambos os valores precisam ser números");
                     } else {
                         const rand = Math.floor(Math.random() * (max - min + 1)) + min;
-                        adicionarLinha(`🎲 Número aleatório entre ${min} e ${max}: ${rand}`);
+                        adicionarLinha(`Número aleatório entre ${min} e ${max}: ${rand}`);
                     }
                 }
                 break;
 
             case "inverter":
                 if(args.length < 2) {
-                    adicionarLinha("⚠️ Uso: inverter [texto]");
+                    adicionarLinha("Uso: inverter [texto]");
                 } else {
                     const texto = args.slice(1).join(" ");
                     const invertido = texto.split("").reverse().join("");
-                    adicionarLinha(`🔄 Texto invertido: ${invertido}`);
+                    adicionarLinha(`Texto invertido: ${invertido}`);
                 }
                 break;
 
             case "contar":
                 if(args.length < 2) {
-                    adicionarLinha("⚠️ Uso: contar [n]");
+                    adicionarLinha("Uso: contar [n]");
                 } else {
                     const n = Number(args[1]);
                     if(isNaN(n) || n < 1) {
-                        adicionarLinha("⚠️ Informe um número inteiro maior que 0");
+                        adicionarLinha("Informe um número inteiro maior que 0");
                     } else {
                         let contagem = "";
                         for(let i = 1; i <= n; i++) {
                             contagem += i + " ";
                         }
-                        adicionarLinha(`🔢 Contagem: ${contagem}`);
+                        adicionarLinha(`Contagem: ${contagem}`);
                     }
                 }
                 break;
@@ -271,10 +271,10 @@ function executarComando(cmd) {
 
             case "site":
                 if(args.length < 2) {
-                    adicionarLinha("⚠️ Uso: site [url]");
+                    adicionarLinha("Uso: site [url]");
                 } else {
                     const url = args[1];
-                    adicionarLinha(`🌐 Abriria o site: ${url}`);
+                    adicionarLinha(`Abriria o site: ${url}`);
                 }
                 break;    
 
