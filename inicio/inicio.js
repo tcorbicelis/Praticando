@@ -74,40 +74,101 @@ function adicionarLinha(texto) {
 }
 
 function executarComando(cmd) {
-    switch(cmd) {
+    const args = cmd.split(" "); // Para separar o comando dos parâmetros
+    const principal = args[0];
+
+    switch(principal) {
         case "help":
             adicionarLinha("help - Mostrar comandos");
             adicionarLinha("sobre - Sobre o dev");
-            adicionarLinha("clear - Limpar");
+            adicionarLinha("clear - Limpar terminal");
+            adicionarLinha("soma [a] [b] - Soma dois números");
+            adicionarLinha("multiplicar [a] [b] - Multiplica dois números");
+            adicionarLinha("parouimpar [n] - Verifica se é par ou ímpar");
+            adicionarLinha("fatorial [n] - Calcula o fatorial de um número");
             break;
 
         case "sobre":
             adicionarLinha("💚 Dev focado em lógica e front-end.");
             break;
 
-case "clear":
-    // Limpa todas as linhas, mantendo o input
-    terminal.innerHTML = `
-        <div class="linha">Terminal v1.0</div>
-        <div class="linha">Digite <strong>help</strong> para ver os comandos.</div>
-        <br>
-        <div class="input-line">
-            <span class="prompt">root@logic:~$</span>
-            <input type="text" id="comando" autofocus>
-        </div>
-    `;
+        case "soma":
+            if(args.length < 3) {
+                adicionarLinha("⚠️ Uso: soma [a] [b]");
+            } else {
+                const a = Number(args[1]);
+                const b = Number(args[2]);
+                if(isNaN(a) || isNaN(b)) {
+                    adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                } else {
+                    adicionarLinha(`Resultado: ${a} + ${b} = ${a + b}`);
+                }
+            }
+            break;
 
-    // Atualiza a referência do input para continuar funcionando
-    const newInput = document.getElementById("comando");
-    newInput.addEventListener("keydown", function(e) {
-        if (e.key === "Enter") {
-            const valor = newInput.value.trim().toLowerCase();
-            adicionarLinha("root@logic:~$ " + valor);
-            executarComando(valor);
-            newInput.value = "";
-        }
-    });
-    break;
+        case "multiplicar":
+            if(args.length < 3) {
+                adicionarLinha("⚠️ Uso: multiplicar [a] [b]");
+            } else {
+                const a = Number(args[1]);
+                const b = Number(args[2]);
+                if(isNaN(a) || isNaN(b)) {
+                    adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                } else {
+                    adicionarLinha(`Resultado: ${a} * ${b} = ${a * b}`);
+                }
+            }
+            break;
+
+        case "parouimpar":
+            if(args.length < 2) {
+                adicionarLinha("⚠️ Uso: parouimpar [n]");
+            } else {
+                const n = Number(args[1]);
+                if(isNaN(n)) {
+                    adicionarLinha("⚠️ Informe um número válido");
+                } else {
+                    const resultado = (n % 2 === 0) ? "Par" : "Ímpar";
+                    adicionarLinha(`O número ${n} é ${resultado}`);
+                }
+            }
+            break;
+
+        case "fatorial":
+            if(args.length < 2) {
+                adicionarLinha("⚠️ Uso: fatorial [n]");
+            } else {
+                const n = Number(args[1]);
+                if(isNaN(n) || n < 0) {
+                    adicionarLinha("⚠️ Informe um número inteiro não negativo");
+                } else {
+                    let f = 1;
+                    for(let i=1; i<=n; i++) f *= i;
+                    adicionarLinha(`Fatorial de ${n} é ${f}`);
+                }
+            }
+            break;
+
+        case "clear":
+            terminal.innerHTML = `
+                <div class="linha">Terminal v1.0</div>
+                <div class="linha">Digite <strong>help</strong> para ver os comandos.</div>
+                <br>
+                <div class="input-line">
+                    <span class="prompt">root@logic:~$</span>
+                    <input type="text" id="comando" autofocus>
+                </div>
+            `;
+            const newInput = document.getElementById("comando");
+            newInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+                    const valor = newInput.value.trim().toLowerCase();
+                    adicionarLinha("root@logic:~$ " + valor);
+                    executarComando(valor);
+                    newInput.value = "";
+                }
+            });
+            break;
 
         default:
             adicionarLinha("º Comando não reconhecido");
