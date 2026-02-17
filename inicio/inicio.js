@@ -363,11 +363,101 @@ function simularArquivosSecretos() {
 
             setTimeout(() => {
                 adicionarLinha("Arquivos extraídos com sucesso 😈");
-                efeitoTelaHack();
+                iniciarRastreamento();
             }, 3800);
         }
 
     }, 500);
+}
+
+function iniciarRastreamento() {
+
+    adicionarLinha("⚠ ATIVIDADE SUSPEITA DETECTADA ⚠");
+
+    const ipFake = gerarIPFake();
+    adicionarLinha("Rastreando IP: " + ipFake);
+
+    let progresso = 0;
+
+    const rastreio = setInterval(() => {
+
+        progresso += Math.floor(Math.random() * 20) + 10;
+
+        if (progresso >= 100) progresso = 100;
+
+        adicionarLinha("Localizando origem... " + progresso + "%");
+
+        if (progresso === 100) {
+            clearInterval(rastreio);
+
+            setTimeout(() => {
+                adicionarLinha("IP localizado!");
+                adicionarLinha("País: Brasil");
+                adicionarLinha("Cidade: São Paulo");
+                adicionarLinha("Provedor: Rede Segura Telecom");
+            }, 800);
+
+            setTimeout(() => {
+                contagemRegressiva();
+            }, 2000);
+        }
+
+    }, 500);
+}
+
+function gerarIPFake() {
+    return `${rand255()}.${rand255()}.${rand255()}.${rand255()}`;
+}
+
+function rand255() {
+    return Math.floor(Math.random() * 256);
+}
+
+function contagemRegressiva() {
+
+    let tempo = 5;
+
+    adicionarLinha("🚨 CONTRA-ATAQUE INICIADO 🚨");
+
+    const countdown = setInterval(() => {
+
+        adicionarLinha("Sistema será bloqueado em: " + tempo + "s");
+
+        tempo--;
+
+        if (tempo < 0) {
+            clearInterval(countdown);
+
+            adicionarLinha("CONEXÃO INTERROMPIDA.");
+            adicionarLinha("Você escapou por pouco... 😈");
+
+            efeitoTelaHackPesado();
+        }
+
+    }, 1000);
+}
+
+function efeitoTelaHackPesado() {
+
+    let piscadas = 0;
+
+    const glitch = setInterval(() => {
+
+        document.body.style.backgroundColor =
+            piscadas % 2 === 0 ? "darkred" : "black";
+
+        document.body.style.filter =
+            piscadas % 2 === 0 ? "contrast(200%) brightness(150%) hue-rotate(90deg)" : "none";
+
+        piscadas++;
+
+        if (piscadas > 20) {
+            clearInterval(glitch);
+            document.body.style.backgroundColor = "black";
+            document.body.style.filter = "none";
+        }
+
+    }, 80);
 }
 
 function mostrarErro() {
