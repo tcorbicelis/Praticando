@@ -106,7 +106,7 @@
     cursor: pointer;
 
     /* MOVE O BOTÃO PARA A DIREITA */
-    margin-left: 16px; /* aumenta esse valor para ir mais à direita */
+    margin-left: 10px; /* aumenta esse valor para ir mais à direita */
 }
 
 .terminal-btn:hover {
