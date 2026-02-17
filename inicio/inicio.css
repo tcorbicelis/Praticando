@@ -114,7 +114,7 @@
     color: black;
 }
 
-/* MODAL */
+/* MODAL COM TRANSIÇÃO SUAVE */
 .modal {
     display: none;
     position: fixed;
@@ -124,8 +124,17 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.4s ease; /* efeito fade */
 }
 
+/* quando abrir */
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Conteúdo do modal com slide e glow pulsante */
 .modal-content {
     background: black;
     margin: 5% auto;
@@ -133,11 +142,19 @@
     width: 80%;
     max-width: 800px;
     height: 70vh;
-    border: 1px solid #00ff66;
+    border: 2px solid #00ff66;
     box-shadow: 0 0 20px #00ff66;
     overflow-y: auto;
     color: #00ff66;
     font-family: "Courier New", monospace;
+    transform: translateY(-50px);
+    transition: transform 0.4s ease, box-shadow 0.6s ease;
+    animation: glowPulse 2s infinite;
+}
+
+/* Quando o modal abre, anima o slide */
+.modal.show .modal-content {
+    transform: translateY(0);
 }
 
 .close-btn {

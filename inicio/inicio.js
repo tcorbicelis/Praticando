@@ -46,13 +46,30 @@ window.addEventListener("resize", () => {
 });
 
 function abrirTerminal() {
-    document.getElementById("terminalModal").style.display = "block";
+    const modal = document.getElementById("terminalModal");
+    modal.classList.add("show");  // adiciona a classe para fade + slide
     document.getElementById("comando").focus();
 }
 
 function fecharTerminal() {
-    document.getElementById("terminalModal").style.display = "none";
+    const modal = document.getElementById("terminalModal");
+    modal.classList.remove("show");
+    // opcional: delay para esconder depois da transição
+    setTimeout(() => {
+        if (!modal.classList.contains("show")) {
+            modal.style.display = "none";
+        }
+    }, 400); // tempo igual ao transition do CSS
 }
+
+// Para garantir que o display:block funcione quando abrir
+document.querySelectorAll(".terminal-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const modal = document.getElementById("terminalModal");
+        modal.style.display = "block"; // necessário antes da transição
+        setTimeout(() => modal.classList.add("show"), 10); // delay minúsculo
+    });
+});
 
 const input = document.getElementById("comando");
 const terminal = document.getElementById("terminal");
