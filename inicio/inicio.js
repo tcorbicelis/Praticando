@@ -128,6 +128,12 @@ function executarComando(cmd) {
                 adicionarLinha("multiplicar [a] [b] - Multiplica dois números");
                 adicionarLinha("parouimpar [n] - Verifica se é par ou ímpar");
                 adicionarLinha("fatorial [n] - Calcula o fatorial de um número");
+                adicionarLinha("data - Mostra data e hora atual");
+                adicionarLinha("aleatorio [min] [max] - Gera número aleatório");
+                adicionarLinha("inverter [texto] - Inverte o texto fornecido");
+                adicionarLinha("contar [n] - Conta de 1 até n");
+                adicionarLinha("pi - Mostra o valor de π");
+                adicionarLinha("site [url] - Simula abertura de site");
                 break;
 
             case "sobre":
@@ -211,6 +217,66 @@ function executarComando(cmd) {
                     }
                 });
                 break;
+
+            case "data":
+                const agora = new Date();
+                adicionarLinha(`📅 Data: ${agora.toLocaleDateString()} 🕒 Hora: ${agora.toLocaleTimeString()}`);
+                break;
+
+            case "aleatorio":
+                if(args.length < 3) {
+                    adicionarLinha("⚠️ Uso: aleatorio [min] [max]");
+                } else {
+                    const min = Number(args[1]);
+                    const max = Number(args[2]);
+                    if(isNaN(min) || isNaN(max)) {
+                        adicionarLinha("⚠️ Ambos os valores precisam ser números");
+                    } else {
+                        const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+                        adicionarLinha(`🎲 Número aleatório entre ${min} e ${max}: ${rand}`);
+                    }
+                }
+                break;
+
+            case "inverter":
+                if(args.length < 2) {
+                    adicionarLinha("⚠️ Uso: inverter [texto]");
+                } else {
+                    const texto = args.slice(1).join(" ");
+                    const invertido = texto.split("").reverse().join("");
+                    adicionarLinha(`🔄 Texto invertido: ${invertido}`);
+                }
+                break;
+
+            case "contar":
+                if(args.length < 2) {
+                    adicionarLinha("⚠️ Uso: contar [n]");
+                } else {
+                    const n = Number(args[1]);
+                    if(isNaN(n) || n < 1) {
+                        adicionarLinha("⚠️ Informe um número inteiro maior que 0");
+                    } else {
+                        let contagem = "";
+                        for(let i = 1; i <= n; i++) {
+                            contagem += i + " ";
+                        }
+                        adicionarLinha(`🔢 Contagem: ${contagem}`);
+                    }
+                }
+                break;
+
+            case "pi":
+                adicionarLinha(`π ≈ ${Math.PI.toFixed(10)}`);
+                break;
+
+            case "site":
+                if(args.length < 2) {
+                    adicionarLinha("⚠️ Uso: site [url]");
+                } else {
+                    const url = args[1];
+                    adicionarLinha(`🌐 Abriria o site: ${url}`);
+                }
+                break;    
 
             default:
                 adicionarLinha("º Comando não reconhecido");
