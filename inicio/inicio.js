@@ -288,9 +288,10 @@ function hackearSistema() {
             setTimeout(() => adicionarLinha("Quebrando criptografia AES-256..."), 600);
             setTimeout(() => adicionarLinha("Escalando privilégios..."), 1300);
             setTimeout(() => adicionarLinha("Acesso ROOT concedido!"), 2000);
+
             setTimeout(() => {
-                adicionarLinha("Sistema comprometido com sucesso");
-                efeitoTelaHack();
+                adicionarLinha("Listando arquivos secretos...");
+                simularArquivosSecretos();
             }, 2800);
         }
 
@@ -317,6 +318,56 @@ function efeitoTelaHack() {
         }
 
     }, 100);
+}
+
+function simularArquivosSecretos() {
+
+    const arquivos = [
+        "/root/acesso.conf",
+        "/etc/firewall.override",
+        "/home/admin/passwords.txt",
+        "/database/clientes.db",
+        "/sistema/nuclear/codigos.txt",
+        "/gov/area51/segredo_maximo.zip",
+        "/financeiro/contas_bancarias.xls",
+        "/darkweb/bitcoin_wallet.dat",
+        "/servidor/backup_proibido.tar.gz"
+    ];
+
+    let index = 0;
+
+    const intervaloArquivos = setInterval(() => {
+
+        adicionarLinha("✔ " + arquivos[index]);
+
+        index++;
+
+        if (index >= arquivos.length) {
+            clearInterval(intervaloArquivos);
+
+            setTimeout(() => {
+                adicionarLinha("Download dos arquivos iniciado...");
+            }, 800);
+
+            setTimeout(() => {
+                adicionarLinha("Transferindo dados █▒▒▒▒▒▒▒ 10%");
+            }, 1500);
+
+            setTimeout(() => {
+                adicionarLinha("Transferindo dados █████▒▒▒ 65%");
+            }, 2200);
+
+            setTimeout(() => {
+                adicionarLinha("Transferindo dados █████████ 100%");
+            }, 3000);
+
+            setTimeout(() => {
+                adicionarLinha("Arquivos extraídos com sucesso 😈");
+                efeitoTelaHack();
+            }, 3800);
+        }
+
+    }, 500);
 }
 
 function mostrarErro() {
