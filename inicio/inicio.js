@@ -1,7 +1,21 @@
 // BOTÃO
-function mostrarMensagem() {
-    document.getElementById("resultado").innerHTML =
-    "A lógica é o poder por trás de todo programador!";
+function verificarIdade() {
+    const idade = Number(document.getElementById("idadeInput").value);
+    const resultado = document.getElementById("resultado");
+
+    if (isNaN(idade) || idade < 0) {
+        resultado.style.color = "red";
+        resultado.innerHTML = "⚠️ Por favor, digite uma idade válida!";
+        return;
+    }
+
+    if (idade >= 18) {
+        resultado.style.color = "#00ff66";
+        resultado.innerHTML = "🎉 Você é maior de idade!";
+    } else {
+        resultado.style.color = "#ff3300";
+        resultado.innerHTML = "⛔ Você é menor de idade!";
+    }
 }
 
 // EFEITO MATRIX
