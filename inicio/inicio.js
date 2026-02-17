@@ -11,7 +11,7 @@ function verificarIdade() {
 
     if (idade >= 18) {
         resultado.style.color = "#00ff66";
-        resultado.innerHTML = "🎉 Você é maior de idade!";
+        resultado.innerHTML = "✅ Você é maior de idade!";
     } else {
         resultado.style.color = "#ff3300";
         resultado.innerHTML = "⛔ Você é menor de idade!";
