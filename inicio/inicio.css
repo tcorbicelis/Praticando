@@ -184,3 +184,24 @@
     width: 100%;
     font-family: monospace;
 }
+
+/* Animação de loading */
+.loading {
+    display: inline-block;
+    font-family: monospace;
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    text-align: left;
+    animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
