@@ -1,7 +1,7 @@
 // BOTÃO
 function mostrarMensagem() {
     document.getElementById("resultado").innerHTML =
-    "⚡ A lógica é o poder por trás de todo programador!";
+    "A lógica é o poder por trás de todo programador!";
 }
 
 // EFEITO MATRIX
@@ -21,10 +21,10 @@ for(let x = 0; x < colunas; x++) {
 }
 
 function desenhar() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#00ff66";
+    ctx.fillStyle = "#008833";
     ctx.font = tamanhoFonte + "px monospace";
 
     for(let i = 0; i < gotas.length; i++) {
