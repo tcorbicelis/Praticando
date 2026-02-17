@@ -96,3 +96,71 @@
     button:hover {
         background-color: white;
     }
+
+    /* BOTÃO */
+.terminal-btn {
+    background: black;
+    color: #00ff66;
+    border: 1px solid #00ff66;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.terminal-btn:hover {
+    background: #00ff66;
+    color: black;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background: black;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    height: 70vh;
+    border: 1px solid #00ff66;
+    box-shadow: 0 0 20px #00ff66;
+    overflow-y: auto;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* TERMINAL */
+.linha {
+    margin-bottom: 5px;
+}
+
+.input-line {
+    display: flex;
+}
+
+.prompt {
+    margin-right: 5px;
+}
+
+#comando {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff66;
+    width: 100%;
+    font-family: monospace;
+}

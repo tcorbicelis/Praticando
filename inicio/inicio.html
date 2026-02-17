@@ -18,6 +18,29 @@
     <p>Domine a mente da máquina.</p>
 </header>
 
+<!--Botão para acessar o Terminal-->
+<button class="terminal-btn" onclick="abrirTerminal()">
+    TERMINAL
+</button>
+
+<!-- JANELA TERMINAL -->
+<div id="terminalModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="fecharTerminal()">✖</span>
+
+        <div id="terminal">
+            <div class="linha">Terminal v1.0</div>
+            <div class="linha">Digite <strong>help</strong> para ver os comandos.</div>
+            <br>
+
+            <div class="input-line">
+                <span class="prompt">root@logic:~$</span>
+                <input type="text" id="comando" autofocus>
+            </div>
+        </div>
+    </div>
+</div>
+
 <nav>
     <a href="#conceito">Conceito</a>
     <a href="#estrutura">Estruturas</a>
