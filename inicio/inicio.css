@@ -1,0 +1,98 @@
+ body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        color: #00ff66;
+        font-family: "Courier New", monospace;
+        overflow-x: hidden;
+    }
+
+    /* CANVAS FUNDO */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    header {
+        background: rgba(0,0,0,0.8);
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px solid #00ff66;
+        box-shadow: 0 0 20px #00ff66;
+    }
+
+    header h1 {
+        font-size: 40px;
+        text-shadow: 0 0 15px #00ff66;
+        letter-spacing: 3px;
+    }
+
+    nav {
+        text-align: center;
+        padding: 15px;
+    }
+
+    nav a {
+        color: #00ff66;
+        text-decoration: none;
+        margin: 15px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px #00ff66;
+    }
+
+    section {
+        padding: 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h2 {
+        border-left: 5px solid #00ff66;
+        padding-left: 10px;
+        text-shadow: 0 0 10px #00ff66;
+    }
+
+    .card {
+        background-color: rgba(17,17,17,0.9);
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid #00ff66;
+        box-shadow: 0 0 15px #003300;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 20px #00ff66;
+        transform: scale(1.02);
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        border-top: 2px solid #00ff66;
+        margin-top: 40px;
+        font-size: 14px;
+        opacity: 0.7;
+        background: rgba(0,0,0,0.8);
+    }
+
+    button {
+        background-color: #00ff66;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: white;
+    }

@@ -5,99 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lógica de Programação - Dark Rock</title>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #0d0d0d;
-        color: #00ff66;
-        font-family: "Courier New", monospace;
-    }
+<link rel="stylesheet" href="inicio.css">
 
-    header {
-        background: linear-gradient(90deg, #000000, #111111);
-        padding: 20px;
-        text-align: center;
-        border-bottom: 2px solid #00ff66;
-        box-shadow: 0 0 20px #00ff66;
-    }
-
-    header h1 {
-        font-size: 40px;
-        text-shadow: 0 0 15px #00ff66;
-        letter-spacing: 3px;
-    }
-
-    nav {
-        text-align: center;
-        padding: 15px;
-    }
-
-    nav a {
-        color: #00ff66;
-        text-decoration: none;
-        margin: 15px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    nav a:hover {
-        color: #ffffff;
-        text-shadow: 0 0 10px #00ff66;
-    }
-
-    section {
-        padding: 40px;
-        max-width: 900px;
-        margin: auto;
-    }
-
-    h2 {
-        border-left: 5px solid #00ff66;
-        padding-left: 10px;
-        text-shadow: 0 0 10px #00ff66;
-    }
-
-    .card {
-        background-color: #111;
-        padding: 20px;
-        margin: 20px 0;
-        border: 1px solid #00ff66;
-        box-shadow: 0 0 15px #003300;
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        box-shadow: 0 0 20px #00ff66;
-        transform: scale(1.02);
-    }
-
-    footer {
-        text-align: center;
-        padding: 20px;
-        border-top: 2px solid #00ff66;
-        margin-top: 40px;
-        font-size: 14px;
-        opacity: 0.7;
-    }
-
-    button {
-        background-color: #00ff66;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
-    button:hover {
-        background-color: white;
-    }
-</style>
 </head>
-
 <body>
+
+<!-- Canvas do efeito -->
+<canvas id="matrix"></canvas>
 
 <header>
     <h1>⚡ LÓGICA DE PROGRAMAÇÃO ⚡</h1>
@@ -116,9 +30,6 @@
         <p>
             Lógica de programação é a forma de organizar pensamentos e instruções
             para resolver problemas usando código.
-        </p>
-        <p>
-            É a base de qualquer linguagem: Python, Java, C, JavaScript...
         </p>
     </div>
 </section>
@@ -152,12 +63,7 @@ if (idade >= 18) {
     <p>T.Corbicelis © 2026</p>
 </footer>
 
-<script>
-function mostrarMensagem() {
-    document.getElementById("resultado").innerHTML =
-    "⚡ A lógica é o poder por trás de todo programador!";
-}
-</script>
+<script src="inicio.js"></script>
 
 </body>
 </html>
