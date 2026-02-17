@@ -205,3 +205,26 @@
     60% { content: '..'; }
     80%, 100% { content: '...'; }
 }
+
+/* ERRO SIMULADO */
+#erroModal .modal-content {
+    background: black;
+    border: 2px solid red;
+    box-shadow: 0 0 30px red;
+    font-family: "Courier New", monospace;
+    animation: shake 0.5s;
+}
+
+/* Shake animation */
+@keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(5px, 0px); }
+    50% { transform: translate(-5px, 0px); }
+    75% { transform: translate(5px, 0px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+/* Transição fade + slide */
+.modal.show .modal-content {
+    transform: translateY(0);
+}

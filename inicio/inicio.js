@@ -217,3 +217,24 @@ function executarComando(cmd) {
         }
     }, 800); // tempo de loading em ms (0.8s)
 }
+
+function mostrarErro() {
+    const erroModal = document.getElementById("erroModal");
+    erroModal.style.display = "block";
+    setTimeout(() => {
+        erroModal.classList.add("show"); // aplica fade + slide
+    }, 10);
+}
+
+function fecharErro() {
+    const erroModal = document.getElementById("erroModal");
+    erroModal.classList.remove("show");
+    setTimeout(() => {
+        erroModal.style.display = "none";
+    }, 400); // tempo igual ao transition do CSS
+}
+
+// Dispara a cada 5 segundos
+setInterval(() => {
+    mostrarErro();
+}, 30000);
