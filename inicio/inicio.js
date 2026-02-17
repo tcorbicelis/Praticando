@@ -88,11 +88,11 @@ function executarComando(cmd) {
 case "clear":
     // Limpa todas as linhas, mantendo o input
     terminal.innerHTML = `
-        <div class="linha">⚡ Dark Logic Terminal v1.0</div>
+        <div class="linha">Terminal v1.0</div>
         <div class="linha">Digite <strong>help</strong> para ver os comandos.</div>
         <br>
         <div class="input-line">
-            <span class="prompt">root@darklogic:~$</span>
+            <span class="prompt">root@logic:~$</span>
             <input type="text" id="comando" autofocus>
         </div>
     `;
@@ -110,6 +110,6 @@ case "clear":
     break;
 
         default:
-            adicionarLinha("❌ Comando não reconhecido");
+            adicionarLinha("º Comando não reconhecido");
     }
 }
