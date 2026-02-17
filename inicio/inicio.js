@@ -1,4 +1,7 @@
-// BOTÃO
+// ========================================
+// VERIFICAR IDADE
+// ========================================
+
 function verificarIdade() {
     const idade = Number(document.getElementById("idadeInput").value);
     const resultado = document.getElementById("resultado");
@@ -18,20 +21,28 @@ function verificarIdade() {
     }
 }
 
-// EFEITO MATRIX
+// ========================================
+// EFEITO MATRIX (OTIMIZADO)
+// ========================================
+
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+let letras = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let tamanhoFonte = 14;
+let colunas;
+let gotas = [];
 
-const letras = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const tamanhoFonte = 14;
-const colunas = canvas.width / tamanhoFonte;
+function iniciarMatrix() {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
 
-const gotas = [];
-for(let x = 0; x < colunas; x++) {
-    gotas[x] = 1;
+    colunas = Math.floor(canvas.width / tamanhoFonte);
+    gotas = [];
+
+    for (let x = 0; x < colunas; x++) {
+        gotas[x] = 1;
+    }
 }
 
 function desenhar() {
@@ -41,227 +52,196 @@ function desenhar() {
     ctx.fillStyle = "#008833";
     ctx.font = tamanhoFonte + "px monospace";
 
-    for(let i = 0; i < gotas.length; i++) {
+    for (let i = 0; i < gotas.length; i++) {
         const texto = letras.charAt(Math.floor(Math.random() * letras.length));
         ctx.fillText(texto, i * tamanhoFonte, gotas[i] * tamanhoFonte);
 
-        if(gotas[i] * tamanhoFonte > canvas.height && Math.random() > 0.975) {
+        if (gotas[i] * tamanhoFonte > canvas.height && Math.random() > 0.975) {
             gotas[i] = 0;
         }
         gotas[i]++;
     }
+
+    requestAnimationFrame(desenhar);
 }
 
-setInterval(desenhar, 35);
+window.addEventListener("resize", iniciarMatrix);
 
-window.addEventListener("resize", () => {
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-});
+iniciarMatrix();
+desenhar();
+
+// ========================================
+// TERMINAL
+// ========================================
+
+const terminal = document.getElementById("terminal");
+let input = document.getElementById("comando");
 
 function abrirTerminal() {
     const modal = document.getElementById("terminalModal");
-    modal.classList.add("show");  // adiciona a classe para fade + slide
-    document.getElementById("comando").focus();
+    modal.style.display = "block";
+    setTimeout(() => modal.classList.add("show"), 10);
+    input.focus();
 }
 
 function fecharTerminal() {
     const modal = document.getElementById("terminalModal");
     modal.classList.remove("show");
-    // opcional: delay para esconder depois da transição
-    setTimeout(() => {
-        if (!modal.classList.contains("show")) {
-            modal.style.display = "none";
-        }
-    }, 400); // tempo igual ao transition do CSS
+    setTimeout(() => modal.style.display = "none", 400);
 }
-
-// Para garantir que o display:block funcione quando abrir
-document.querySelectorAll(".terminal-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const modal = document.getElementById("terminalModal");
-        modal.style.display = "block"; // necessário antes da transição
-        setTimeout(() => modal.classList.add("show"), 10); // delay minúsculo
-    });
-});
-
-const input = document.getElementById("comando");
-const terminal = document.getElementById("terminal");
-
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        const valor = input.value.trim().toLowerCase();
-        adicionarLinha("root@logic:~$ " + valor);
-        executarComando(valor);
-        input.value = "";
-    }
-});
 
 function adicionarLinha(texto) {
     const linha = document.createElement("div");
     linha.classList.add("linha");
     linha.innerHTML = texto;
     terminal.insertBefore(linha, terminal.lastElementChild);
+
+    terminal.scrollTop = terminal.scrollHeight;
 }
 
+function configurarInput() {
+    input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            const valor = input.value.trim().toLowerCase();
+            adicionarLinha("root@logic:~$ " + valor);
+            executarComando(valor);
+            input.value = "";
+        }
+    });
+}
+
+configurarInput();
+
+// ========================================
+// EXECUTAR COMANDO
+// ========================================
+
 function executarComando(cmd) {
-    const args = cmd.split(" "); 
+
+    const args = cmd.split(" ");
     const principal = args[0];
 
-    // Adiciona linha de loading
     const loadingLinha = document.createElement("div");
     loadingLinha.classList.add("linha");
     loadingLinha.innerHTML = "Carregando <span class='loading'></span>";
     terminal.insertBefore(loadingLinha, terminal.lastElementChild);
 
-    // Delay simula processamento
     setTimeout(() => {
-        // Remove a linha de loading
+
         loadingLinha.remove();
 
-        switch(principal) {
+        switch (principal) {
+
             case "help":
                 adicionarLinha("help - Mostrar comandos");
                 adicionarLinha("sobre - Sobre o dev");
                 adicionarLinha("clear - Limpar terminal");
-                adicionarLinha("soma [a] [b] - Soma dois números");
-                adicionarLinha("multiplicar [a] [b] - Multiplica dois números");
-                adicionarLinha("parouimpar [n] - Verifica se é par ou ímpar");
-                adicionarLinha("fatorial [n] - Calcula o fatorial de um número");
-                adicionarLinha("data - Mostra data e hora atual");
-                adicionarLinha("aleatorio [min] [max] - Gera número aleatório");
-                adicionarLinha("inverter [texto] - Inverte o texto fornecido");
-                adicionarLinha("contar [n] - Conta de 1 até n");
-                adicionarLinha("pi - Mostra o valor de π");
-                adicionarLinha("site [url] - Simula abertura de site");
+                adicionarLinha("soma [a] [b]");
+                adicionarLinha("multiplicar [a] [b]");
+                adicionarLinha("parouimpar [n]");
+                adicionarLinha("fatorial [n]");
+                adicionarLinha("data");
+                adicionarLinha("aleatorio [min] [max]");
+                adicionarLinha("inverter [texto]");
+                adicionarLinha("contar [n]");
+                adicionarLinha("pi");
+                adicionarLinha("hackear sistema");
                 break;
 
             case "sobre":
                 adicionarLinha("Dev focado em lógica e front-end.");
                 break;
 
+            case "clear":
+                const linhas = terminal.querySelectorAll(".linha");
+                linhas.forEach(l => l.remove());
+                adicionarLinha("Terminal limpo.");
+                break;
+
             case "soma":
-                if(args.length < 3) {
+                if (args.length < 3) {
                     adicionarLinha("Uso: soma [a] [b]");
                 } else {
                     const a = Number(args[1]);
                     const b = Number(args[2]);
-                    if(isNaN(a) || isNaN(b)) {
-                        adicionarLinha("Ambos os valores precisam ser números");
+                    if (isNaN(a) || isNaN(b)) {
+                        adicionarLinha("Valores precisam ser números");
                     } else {
-                        adicionarLinha(`Resultado: ${a} + ${b} = ${a + b}`);
+                        adicionarLinha(`Resultado: ${a + b}`);
                     }
                 }
                 break;
 
             case "multiplicar":
-                if(args.length < 3) {
+                if (args.length < 3) {
                     adicionarLinha("Uso: multiplicar [a] [b]");
                 } else {
                     const a = Number(args[1]);
                     const b = Number(args[2]);
-                    if(isNaN(a) || isNaN(b)) {
-                        adicionarLinha("Ambos os valores precisam ser números");
+                    if (isNaN(a) || isNaN(b)) {
+                        adicionarLinha("Valores precisam ser números");
                     } else {
-                        adicionarLinha(`Resultado: ${a} * ${b} = ${a * b}`);
+                        adicionarLinha(`Resultado: ${a * b}`);
                     }
                 }
                 break;
 
             case "parouimpar":
-                if(args.length < 2) {
-                    adicionarLinha("Uso: parouimpar [n]");
+                const n = Number(args[1]);
+                if (isNaN(n)) {
+                    adicionarLinha("Informe um número válido");
                 } else {
-                    const n = Number(args[1]);
-                    if(isNaN(n)) {
-                        adicionarLinha("Informe um número válido");
-                    } else {
-                        const resultado = (n % 2 === 0) ? "Par" : "Ímpar";
-                        adicionarLinha(`O número ${n} é ${resultado}`);
-                    }
+                    adicionarLinha(n % 2 === 0 ? "Par" : "Ímpar");
                 }
                 break;
 
             case "fatorial":
-                if(args.length < 2) {
-                    adicionarLinha("Uso: fatorial [n]");
+                const num = Number(args[1]);
+                if (isNaN(num) || num < 0) {
+                    adicionarLinha("Número inválido");
                 } else {
-                    const n = Number(args[1]);
-                    if(isNaN(n) || n < 0) {
-                        adicionarLinha("Informe um número inteiro não negativo");
-                    } else {
-                        let f = 1;
-                        for(let i=1; i<=n; i++) f *= i;
-                        adicionarLinha(`Fatorial de ${n} é ${f}`);
-                    }
+                    let f = 1;
+                    for (let i = 1; i <= num; i++) f *= i;
+                    adicionarLinha(`Fatorial: ${f}`);
                 }
-                break;
-
-            case "clear":
-                terminal.innerHTML = `
-                    <div class="linha">Terminal v1.0</div>
-                    <div class="linha">Digite <strong>help</strong> para ver os comandos.</div>
-                    <br>
-                    <div class="input-line">
-                        <span class="prompt">root@logic:~$</span>
-                        <input type="text" id="comando" autofocus>
-                    </div>
-                `;
-                const newInput = document.getElementById("comando");
-                newInput.addEventListener("keydown", function(e) {
-                    if (e.key === "Enter") {
-                        const valor = newInput.value.trim().toLowerCase();
-                        adicionarLinha("root@logic:~$ " + valor);
-                        executarComando(valor);
-                        newInput.value = "";
-                    }
-                });
                 break;
 
             case "data":
                 const agora = new Date();
-                adicionarLinha(`Data: ${agora.toLocaleDateString()} Hora: ${agora.toLocaleTimeString()}`);
+                adicionarLinha(agora.toLocaleString());
                 break;
 
             case "aleatorio":
-                if(args.length < 3) {
+                const min = Number(args[1]);
+                const max = Number(args[2]);
+
+                if (isNaN(min) || isNaN(max)) {
                     adicionarLinha("Uso: aleatorio [min] [max]");
-                } else {
-                    const min = Number(args[1]);
-                    const max = Number(args[2]);
-                    if(isNaN(min) || isNaN(max)) {
-                        adicionarLinha("Ambos os valores precisam ser números");
-                    } else {
-                        const rand = Math.floor(Math.random() * (max - min + 1)) + min;
-                        adicionarLinha(`Número aleatório entre ${min} e ${max}: ${rand}`);
-                    }
+                }
+                else if (min > max) {
+                    adicionarLinha("Min não pode ser maior que Max");
+                }
+                else {
+                    const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+                    adicionarLinha(`Número: ${rand}`);
                 }
                 break;
 
             case "inverter":
-                if(args.length < 2) {
-                    adicionarLinha("Uso: inverter [texto]");
-                } else {
-                    const texto = args.slice(1).join(" ");
-                    const invertido = texto.split("").reverse().join("");
-                    adicionarLinha(`Texto invertido: ${invertido}`);
-                }
+                const texto = args.slice(1).join(" ");
+                adicionarLinha(texto.split("").reverse().join(""));
                 break;
 
             case "contar":
-                if(args.length < 2) {
-                    adicionarLinha("Uso: contar [n]");
+                const limite = Number(args[1]);
+                if (isNaN(limite) || limite < 1) {
+                    adicionarLinha("Número inválido");
                 } else {
-                    const n = Number(args[1]);
-                    if(isNaN(n) || n < 1) {
-                        adicionarLinha("Informe um número inteiro maior que 0");
-                    } else {
-                        let contagem = "";
-                        for(let i = 1; i <= n; i++) {
-                            contagem += i + " ";
-                        }
-                        adicionarLinha(`Contagem: ${contagem}`);
+                    let contagem = "";
+                    for (let i = 1; i <= limite; i++) {
+                        contagem += i + " ";
                     }
+                    adicionarLinha(contagem);
                 }
                 break;
 
@@ -269,19 +249,74 @@ function executarComando(cmd) {
                 adicionarLinha(`π ≈ ${Math.PI.toFixed(10)}`);
                 break;
 
-            case "site":
-                if(args.length < 2) {
-                    adicionarLinha("Uso: site [url]");
+            case "hackear":
+                if (args[1] === "sistema") {
+                    hackearSistema();
                 } else {
-                    const url = args[1];
-                    adicionarLinha(`Abriria o site: ${url}`);
+                    adicionarLinha("Uso: hackear sistema");
                 }
-                break;    
+                break;
 
             default:
-                adicionarLinha("º Comando não reconhecido");
+                adicionarLinha("Comando não reconhecido");
         }
-    }, 800); // tempo de loading em ms (0.8s)
+
+    }, 800);
+}
+
+// ========================================
+// HACK FAKE 😈
+// ========================================
+
+function hackearSistema() {
+
+    let progresso = 0;
+
+    adicionarLinha("Iniciando ataque ao sistema...");
+
+    const intervalo = setInterval(() => {
+
+        progresso += Math.floor(Math.random() * 12) + 8;
+
+        if (progresso >= 100) progresso = 100;
+
+        adicionarLinha("Invadindo firewall... " + progresso + "%");
+
+        if (progresso === 100) {
+            clearInterval(intervalo);
+
+            setTimeout(() => adicionarLinha("Quebrando criptografia AES-256..."), 600);
+            setTimeout(() => adicionarLinha("Escalando privilégios..."), 1300);
+            setTimeout(() => adicionarLinha("Acesso ROOT concedido!"), 2000);
+            setTimeout(() => {
+                adicionarLinha("Sistema comprometido com sucesso");
+                efeitoTelaHack();
+            }, 2800);
+        }
+
+    }, 400);
+}
+
+function efeitoTelaHack() {
+
+    let piscadas = 0;
+
+    const glitch = setInterval(() => {
+        document.body.style.backgroundColor =
+            piscadas % 2 === 0 ? "#001100" : "black";
+
+        document.body.style.filter =
+            piscadas % 2 === 0 ? "contrast(150%) brightness(120%)" : "none";
+
+        piscadas++;
+
+        if (piscadas > 12) {
+            clearInterval(glitch);
+            document.body.style.backgroundColor = "black";
+            document.body.style.filter = "none";
+        }
+
+    }, 100);
 }
 
 function mostrarErro() {
