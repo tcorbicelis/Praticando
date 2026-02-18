@@ -123,15 +123,25 @@ let input = document.getElementById("comando");
 
 function abrirTerminal() {
     const modal = document.getElementById("terminalModal");
+    const botoes = document.getElementById("botoes-tema"); // pegando os botões
+
     modal.style.display = "block";
     setTimeout(() => modal.classList.add("show"), 10);
     input.focus();
+
+    // Esconde os botões quando o terminal abre
+    botoes.style.display = "none";
 }
 
 function fecharTerminal() {
     const modal = document.getElementById("terminalModal");
+    const botoes = document.getElementById("botoes-tema"); // pegando os botões
+
     modal.classList.remove("show");
     setTimeout(() => modal.style.display = "none", 400);
+
+    // Mostra os botões novamente quando o terminal fecha
+    botoes.style.display = "flex";
 }
 
 function adicionarLinha(texto) {

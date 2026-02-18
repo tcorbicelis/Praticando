@@ -206,6 +206,31 @@ button:hover {
     animation: blink 1s infinite;
 }
 
+#botoes-tema {
+    position: fixed;
+    top: 50%;               /* centraliza verticalmente */
+    right: 0;               /* fixa na lateral direita */
+    transform: translateY(-50%); /* ajusta o centro */
+    display: flex;
+    flex-direction: column; /* empilha verticalmente */
+    gap: 10px;              /* espaçamento entre os botões */
+    z-index: 1000;          /* garante que fique acima de outros elementos */
+}
+
+#botoes-tema button {
+    background-color: var(--cor-fundo);
+    color: var(--cor-principal);
+    border: 1px solid var(--cor-principal);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#botoes-tema button:hover {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+}
+
 @keyframes blink {
     0%, 50%, 100% { opacity: 1; }
     25%, 75% { opacity: 0; }
