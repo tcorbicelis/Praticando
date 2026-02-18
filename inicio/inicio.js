@@ -24,7 +24,7 @@ function verificarIdade() {
 }
 
 // ========================================
-// EFEITO MATRIX (OTIMIZADO)
+// EFEITO VISUAL
 // ========================================
 
 const canvas = document.getElementById("matrix");
@@ -259,8 +259,6 @@ function executarComando(cmd) {
                 }
                 break;
 
-
-        // 👇 COLOQUE AQUI 👇
         case "escolha":
 
             if (!modoJogoAtivo) {
@@ -398,23 +396,6 @@ function simularArquivosSecretos() {
         }
 
     }, 500);
-}
-
-function iniciarRastreamento() {
-
-    adicionarLinha("⚠ ATIVIDADE SUSPEITA DETECTADA ⚠");
-
-    const ipFake = gerarIPFake();
-    adicionarLinha("Rastreando IP: " + ipFake);
-
-    setTimeout(() => {
-        adicionarLinha("");
-        adicionarLinha("Escolha uma ação:");
-        adicionarLinha("1 - Desconectar");
-        adicionarLinha("2 - Mascarar IP");
-        adicionarLinha("3 - Continuar ataque");
-        adicionarLinha("Digite: escolha [1-3]");
-    }, 1500);
 }
 
 function iniciarRastreamento() {
