@@ -19,6 +19,18 @@ const temas = {
     roxo: {
         principal: "#bb00ff",
         fundo: "#0f001a"
+    },
+    laranja: {
+        principal: "#FF8C00",
+        fundo: "#0f001a"
+    },
+    branco: {
+        principal: "#FFFAFA",
+        fundo: "#0f001a"
+    },
+    invertido: {
+        principal: "#0f001a",
+        fundo: "#FFFAFA"
     }
 };
 
@@ -70,10 +82,17 @@ function iniciarMatrix() {
 }
 
 function desenhar() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#008833";
+    const estilos = getComputedStyle(document.documentElement);
+    const corAtual = estilos.getPropertyValue('--cor-principal').trim();
+    const fundoAtual = estilos.getPropertyValue('--cor-fundo').trim();
+
+    ctx.globalAlpha = 0.15;
+    ctx.fillStyle = fundoAtual;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1;
+
+    ctx.fillStyle = corAtual;
     ctx.font = tamanhoFonte + "px monospace";
 
     for (let i = 0; i < gotas.length; i++) {
@@ -83,6 +102,7 @@ function desenhar() {
         if (gotas[i] * tamanhoFonte > canvas.height && Math.random() > 0.975) {
             gotas[i] = 0;
         }
+
         gotas[i]++;
     }
 
@@ -312,15 +332,15 @@ function executarComando(cmd) {
                 const nomeTema = args[1];
 
                 if (!nomeTema) {
-                adicionarLinha("Uso: theme [nome]");
-                adicionarLinha("Temas disponíveis: verde, azul, vermelho, roxo");
+                    adicionarLinha("Uso: theme [nome]");
+                    adicionarLinha("Temas disponíveis: verde, azul, vermelho, roxo, laranja, branco, invertido");
                     break;
                 }
 
                 if (!temas.hasOwnProperty(nomeTema)) {
-                adicionarLinha("Tema não encontrado.");
-                adicionarLinha("Use: theme verde | azul | vermelho | roxo");
-                break;
+                    adicionarLinha("Tema não encontrado.");
+                    adicionarLinha("Use: theme verde | azul | vermelho | roxo | laranja | branco | invertido");
+                    break;
                 }
 
                 aplicarTema(nomeTema);
@@ -341,31 +361,8 @@ function aplicarTema(nome) {
 
     const tema = temas[nome];
 
-    document.body.style.color = tema.principal;
-    document.body.style.backgroundColor = tema.fundo;
-
-    // Atualiza bordas e sombras
-    document.querySelectorAll(".card").forEach(card => {
-        card.style.borderColor = tema.principal;
-        card.style.boxShadow = `0 0 15px ${tema.principal}`;
-    });
-
-    document.querySelectorAll("h2").forEach(h2 => {
-        h2.style.borderLeftColor = tema.principal;
-    });
-
-    document.querySelectorAll("a").forEach(link => {
-    link.style.color = tema.principal;
-    });
-
-    document.querySelectorAll("button").forEach(btn => {
-        btn.style.backgroundColor = tema.principal;
-        btn.style.color = "black";
-    });
-
-    document.querySelectorAll(".prompt").forEach(p => {
-        p.style.color = tema.principal;
-    });
+    document.documentElement.style.setProperty('--cor-principal', tema.principal);
+    document.documentElement.style.setProperty('--cor-fundo', tema.fundo);
 
 }
 

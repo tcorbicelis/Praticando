@@ -1,120 +1,142 @@
- body {
-        margin: 0;
-        padding: 0;
-        background: black;
-        color: #00ff66;
-        font-family: "Courier New", monospace;
-        overflow-x: hidden;
-    }
+:root {
+    --cor-principal: #00ff66;  /* Verde padrão */
+    --cor-fundo: black;
 
-    /* CANVAS FUNDO */
-    canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
+    /* Cores extras */
+    --cor-azul: #00ffff;
+    --fundo-azul: #001122;
 
-    header {
-        background: rgba(0,0,0,0.8);
-        padding: 20px;
-        text-align: center;
-        border-bottom: 2px solid #00ff66;
-        box-shadow: 0 0 20px #00ff66;
-    }
+    --cor-vermelho: #ff0033;
+    --fundo-vermelho: #1a0000;
 
-    header h1 {
-        font-size: 40px;
-        text-shadow: 0 0 15px #00ff66;
-        letter-spacing: 3px;
-    }
+    --cor-roxo: #bb00ff;
+    --fundo-roxo: #0f001a;
 
-    nav {
-        text-align: center;
-        padding: 15px;
-    }
+    --cor-laranja: #FF8C00;
+    --fundo-laranja: #0f001a;
 
-    nav a {
-        color: #00ff66;
-        text-decoration: none;
-        margin: 15px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
+    --cor-branco: #FFFAFA;
+    --fundo-branco: #0f001a;
 
-    nav a:hover {
-        color: #ffffff;
-        text-shadow: 0 0 10px #00ff66;
-    }
+    --cor-invertido: #0f001a;
+    --fundo-invertido: #FFFAFA;
+}
 
-    section {
-        padding: 40px;
-        max-width: 900px;
-        margin: auto;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--cor-fundo);
+    color: var(--cor-principal);
+    font-family: "Courier New", monospace;
+    overflow-x: hidden;
+}
 
-    h2 {
-        border-left: 5px solid #00ff66;
-        padding-left: 10px;
-        text-shadow: 0 0 10px #00ff66;
-    }
+/* CANVAS FUNDO */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 
-    .card {
-        background-color: rgba(17,17,17,0.9);
-        padding: 20px;
-        margin: 20px 0;
-        border: 1px solid #00ff66;
-        box-shadow: 0 0 15px #003300;
-        transition: 0.3s;
-    }
+header {
+    background: var(--cor-fundo);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--cor-principal);
+    box-shadow: 0 0 20px var(--cor-principal);
+}
 
-    .card:hover {
-        box-shadow: 0 0 20px #00ff66;
-        transform: scale(1.02);
-    }
+header h1 {
+    font-size: 40px;
+    text-shadow: 0 0 15px var(--cor-principal);
+    letter-spacing: 3px;
+}
 
-    footer {
-        text-align: center;
-        padding: 20px;
-        border-top: 2px solid #00ff66;
-        margin-top: 40px;
-        font-size: 14px;
-        opacity: 0.7;
-        background: rgba(0,0,0,0.8);
-    }
+nav {
+    text-align: center;
+    padding: 15px;
+}
 
-    button {
-        background-color: #00ff66;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 10px;
-    }
+nav a {
+    color: var(--cor-principal);
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-    button:hover {
-        background-color: white;
-    }
+nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px var(--cor-principal);
+}
 
-    /* BOTÃO */
+section {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    border-left: 5px solid var(--cor-principal);
+    padding-left: 10px;
+    text-shadow: 0 0 10px var(--cor-principal);
+}
+
+.card {
+    background-color: rgba(17,17,17,0.9);
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid var(--cor-principal);
+    box-shadow: 0 0 20px var(--cor-principal);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px var(--cor-principal);
+    transform: scale(1.02);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid var(--cor-principal);
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.7;
+    background: var(--cor-fundo);
+}
+
+button {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: white;
+}
+
+/* BOTÃO TERMINAL */
 .terminal-btn {
-    background: black;
-    color: #00ff66;
-    border: 1px solid #00ff66;
+    background: var(--cor-fundo);
+    color: var(--cor-principal);
+    border: 1px solid var(--cor-principal);
     padding: 8px 15px;
     cursor: pointer;
-
-    /* MOVE O BOTÃO PARA A DIREITA */
-    margin-left: 10px; /* aumenta esse valor para ir mais à direita */
+    margin-left: 10px;
 }
 
 .terminal-btn:hover {
-    background: #00ff66;
-    color: black;
+    background: var(--cor-principal);
+    color: var(--cor-fundo);
 }
 
-/* MODAL COM TRANSIÇÃO SUAVE */
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -123,38 +145,31 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background: var(--cor-fundo);
     opacity: 0;
-    transition: opacity 0.4s ease; /* efeito fade */
+    transition: opacity 0.4s ease;
 }
 
-/* quando abrir */
 .modal.show {
     display: block;
     opacity: 1;
 }
 
-/* Conteúdo do modal com slide e glow pulsante */
 .modal-content {
-    background: black;
+    background: var(--cor-fundo);
     margin: 5% auto;
     padding: 20px;
     width: 80%;
     max-width: 800px;
     height: 70vh;
-    border: 2px solid #00ff66;
-    box-shadow: 0 0 20px #ffffff;
+    border: 1px solid var(--cor-principal);
+    box-shadow: 0 0 20px var(--cor-principal);
     overflow-y: auto;
-    color: #ffffff;
+    color: var(--cor-principal);
     font-family: "Courier New", monospace;
     transform: translateY(-50px);
     transition: transform 0.4s ease, box-shadow 0.6s ease;
     animation: glowPulse 2s infinite;
-}
-
-/* Quando o modal abre, anima o slide */
-.modal.show .modal-content {
-    transform: translateY(0);
 }
 
 .close-btn {
@@ -178,79 +193,12 @@
 
 #comando {
     background: transparent;
-    border: none;
-    outline: none;
-    color: #00ff66;
+    border: none;        /* remove a borda */
+    outline: none;       /* remove o foco padrão */
+    box-shadow: none;    /* garante que não tenha sombra */
+    color: var(--cor-principal);
     width: 100%;
     font-family: monospace;
-}
-
-/* Animação de loading */
-.loading {
-    display: inline-block;
-    font-family: monospace;
-}
-
-.loading::after {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    text-align: left;
-    animation: dots 1s steps(5, end) infinite;
-}
-
-@keyframes dots {
-    0%, 20% { content: ''; }
-    40% { content: '.'; }
-    60% { content: '..'; }
-    80%, 100% { content: '...'; }
-}
-
-/* ERRO SIMULADO */
-#erroModal .modal-content {
-    background: black;
-    border: 2px solid red;
-    box-shadow: 0 0 30px red;
-    font-family: "Courier New", monospace;
-    animation: shake 0.5s;
-}
-
-/* Shake animation */
-@keyframes shake {
-    0% { transform: translate(0px, 0px); }
-    25% { transform: translate(5px, 0px); }
-    50% { transform: translate(-5px, 0px); }
-    75% { transform: translate(5px, 0px); }
-    100% { transform: translate(0px, 0px); }
-}
-
-/* Transição fade + slide */
-.modal.show .modal-content {
-    transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 24px;
-    }
-
-    section {
-        padding: 20px;
-    }
-
-    .modal-content {
-        width: 95%;
-        height: 80vh;
-    }
-
-    nav a {
-        display: block;
-        margin: 10px 0;
-    }
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 #comando::after {
@@ -261,4 +209,28 @@ html {
 @keyframes blink {
     0%, 50%, 100% { opacity: 1; }
     25%, 75% { opacity: 0; }
+}
+
+/* ERRO SIMULADO */
+#erroModal .modal-content {
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-principal);
+    box-shadow: 0 0 20px var(--cor-principal);
+    font-family: "Courier New", monospace;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(5px, 0px); }
+    50% { transform: translate(-5px, 0px); }
+    75% { transform: translate(5px, 0px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@media (max-width: 768px) {
+    header h1 { font-size: 24px; }
+    section { padding: 20px; }
+    .modal-content { width: 95%; height: 80vh; }
+    nav a { display: block; margin: 10px 0; }
 }
