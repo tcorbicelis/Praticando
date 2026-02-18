@@ -642,7 +642,7 @@ function fecharErro() {
     }, 400); // tempo igual ao transition do CSS
 }
 
-// Dispara a cada 5 segundos
+// Dispara a cada 30 segundos
 setInterval(() => {
     mostrarErro();
 }, 30000);
