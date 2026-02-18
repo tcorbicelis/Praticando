@@ -652,3 +652,13 @@ function fecharErro() {
 setInterval(() => {
     mostrarErro();
 }, 30000);
+
+document.getElementById("btnSistema").addEventListener("click", function() {
+
+    adicionarLinha("Abrindo sistema...");
+
+    setTimeout(() => {
+        window.location.href = "sistema/index.html";
+    }, 1000);
+
+});
