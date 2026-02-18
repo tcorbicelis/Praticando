@@ -628,18 +628,24 @@ function finalContinuar() {
 
 function mostrarErro() {
     const erroModal = document.getElementById("erroModal");
+    const botoesTema = document.getElementById("botoes-tema");
+
     erroModal.style.display = "block";
     setTimeout(() => {
-        erroModal.classList.add("show"); // aplica fade + slide
+        erroModal.classList.add("show");
+        botoesTema.classList.add("oculto"); // esconde com fade
     }, 10);
 }
 
 function fecharErro() {
     const erroModal = document.getElementById("erroModal");
+    const botoesTema = document.getElementById("botoes-tema");
+
     erroModal.classList.remove("show");
+    botoesTema.classList.remove("oculto"); // traz de volta com fade
     setTimeout(() => {
         erroModal.style.display = "none";
-    }, 400); // tempo igual ao transition do CSS
+    }, 400); // igual ao transition do CSS
 }
 
 // Dispara a cada 30 segundos
