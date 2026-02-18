@@ -264,8 +264,12 @@ button:hover {
     nav a { display: block; margin: 10px 0; }
 }
 
+footer {
+    position: relative;
+}
+
 .btn-sistema {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     left: 20px;
     padding: 10px 18px;
@@ -274,7 +278,6 @@ button:hover {
     border: 1px solid var(--cor-principal);
     font-family: "Courier New", monospace;
     cursor: pointer;
-    z-index: 9999;
     transition: 0.3s;
 }
 
