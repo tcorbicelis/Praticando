@@ -207,27 +207,25 @@ button:hover {
 }
 
 #botoes-tema {
-    position: fixed;
-    top: 50%;               /* centraliza verticalmente */
-    right: 0;               /* fixa na lateral direita */
-    transform: translateY(-50%); /* ajusta o centro */
+    position: absolute;      /* posição relativa ao container pai */
+    top: 100px;              /* ajuste vertical */
+    right: 10px;             /* ajuste horizontal */
     display: flex;
-    flex-direction: column; /* empilha verticalmente */
-    gap: 10px;              /* espaçamento entre os botões */
-    z-index: 1000;          /* garante que fique acima de outros elementos */
+    flex-direction: column;  /* um embaixo do outro */
+    gap: 10px;
+    z-index: 1000;           /* acima de outros elementos */
 }
 
 #botoes-tema button {
-    background-color: var(--cor-fundo);
+    background: var(--cor-fundo);
     color: var(--cor-principal);
     border: 1px solid var(--cor-principal);
     padding: 8px 15px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 #botoes-tema button:hover {
-    background-color: var(--cor-principal);
+    background: var(--cor-principal);
     color: var(--cor-fundo);
 }
 
