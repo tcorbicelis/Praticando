@@ -15,11 +15,11 @@
     --cor-laranja: #FF8C00;
     --fundo-laranja: #0f001a;
 
-    --cor-branco: #FFFAFA;
+    --cor-branco: rgb(255, 255, 255);
     --fundo-branco: #0f001a;
 
     --cor-invertido: #0f001a;
-    --fundo-invertido: #FFFAFA;
+    --fundo-invertido: rgb(255, 255, 255);
 }
 
 body {

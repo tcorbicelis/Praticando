@@ -25,12 +25,12 @@ const temas = {
         fundo: "#0f001a"
     },
     branco: {
-        principal: "#FFFAFA",
+        principal: "#ffffff",
         fundo: "#0f001a"
     },
     invertido: {
         principal: "#0f001a",
-        fundo: "#FFFAFA"
+        fundo: "#ffffff"
     }
 };
 
