@@ -1,5 +1,27 @@
 let modoJogoAtivo = false;
 
+//===============
+// TEMAS
+//===============
+const temas = {
+    verde: {
+        principal: "#00ff66",
+        fundo: "black"
+    },
+    azul: {
+        principal: "#00ffff",
+        fundo: "#001122"
+    },
+    vermelho: {
+        principal: "#ff0033",
+        fundo: "#1a0000"
+    },
+    roxo: {
+        principal: "#bb00ff",
+        fundo: "#0f001a"
+    }
+};
+
 // ========================================
 // VERIFICAR IDADE
 // ========================================
@@ -148,6 +170,7 @@ function executarComando(cmd) {
                 adicionarLinha("contar [n]");
                 adicionarLinha("pi");
                 adicionarLinha("hackear sistema");
+                adicionarLinha("theme");
                 break;
 
             case "sobre":
@@ -259,37 +282,91 @@ function executarComando(cmd) {
                 }
                 break;
 
-        case "escolha":
+            case "escolha":
 
-            if (!modoJogoAtivo) {
-                adicionarLinha("Nenhuma decisão pendente.");
-                break;
-            }
+                if (!modoJogoAtivo) {
+                    adicionarLinha("Nenhuma decisão pendente.");
+                    break;
+                }
 
-            const opcao = args[1];
+                const opcao = args[1];
 
-            if (opcao === "1") {
+                if (opcao === "1") {
                 finalDesconectar();
-            } 
-            else if (opcao === "2") {
+                } 
+                else if (opcao === "2") {
                 finalMascarar();
-            } 
-            else if (opcao === "3") {
+                } 
+                else if (opcao === "3") {
                 finalContinuar();
-            } 
-            else {
+                } 
+                else {
                 adicionarLinha("Escolha inválida. Use 1, 2 ou 3.");
+                }
+
+                modoJogoAtivo = false;
+                break;
+            
+            case "theme":
+
+                const nomeTema = args[1];
+
+                if (!nomeTema) {
+                adicionarLinha("Uso: theme [nome]");
+                adicionarLinha("Temas disponíveis: verde, azul, vermelho, roxo");
+                    break;
+                }
+
+                if (!temas.hasOwnProperty(nomeTema)) {
+                adicionarLinha("Tema não encontrado.");
+                adicionarLinha("Use: theme verde | azul | vermelho | roxo");
+                break;
+                }
+
+                aplicarTema(nomeTema);
+                adicionarLinha("Tema alterado para: " + nomeTema);
+                break;
+
+            default:
+                adicionarLinha("Comando não reconhecido");
             }
-
-            modoJogoAtivo = false;
-            break;
-
-
-        default:
-            adicionarLinha("Comando não reconhecido");
-        }
 
     }, 800);
+}
+
+//===============
+// TEMA
+//===============
+function aplicarTema(nome) {
+
+    const tema = temas[nome];
+
+    document.body.style.color = tema.principal;
+    document.body.style.backgroundColor = tema.fundo;
+
+    // Atualiza bordas e sombras
+    document.querySelectorAll(".card").forEach(card => {
+        card.style.borderColor = tema.principal;
+        card.style.boxShadow = `0 0 15px ${tema.principal}`;
+    });
+
+    document.querySelectorAll("h2").forEach(h2 => {
+        h2.style.borderLeftColor = tema.principal;
+    });
+
+    document.querySelectorAll("a").forEach(link => {
+    link.style.color = tema.principal;
+    });
+
+    document.querySelectorAll("button").forEach(btn => {
+        btn.style.backgroundColor = tema.principal;
+        btn.style.color = "black";
+    });
+
+    document.querySelectorAll(".prompt").forEach(p => {
+        p.style.color = tema.principal;
+    });
+
 }
 
 // ========================================
